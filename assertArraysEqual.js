@@ -3,7 +3,7 @@ const eqArrays = function(actual, expected) {
   for (let i = 0; i <= actual.length - 1; i++) {
     actual[i] === expected[i] ? allValues += 'true ' : allValues += 'false ';
   }
-  return !allValues.includes('false') ? true : false;
+  return !allValues.includes('false') && actual.length === expected.length ? true : false;
 };
 
 const assertArraysEqual = function(arrOne, arrTwo) {
