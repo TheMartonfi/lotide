@@ -24,7 +24,7 @@ const flatten = function(arr) {
       }
     } else {
       output.push(element);
-    } 
+    }
   }
   return output;
 };
