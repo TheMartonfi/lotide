@@ -7,16 +7,34 @@ const assertEqual = function(actual, expected) {
 };
 
 const eqArrays = function(actual, expected) {
-  let allValues = '';
-  for (let i = 0; i <= actual.length - 1; i++) {
-    actual[i] === expected[i] ? allValues += 'true ' : allValues += 'false ';
+
+  if (actual.length !== expected.length) {
+    return false;
   }
-  return !allValues.includes('false') && actual.length === expected.length ? true : false;
+
+  for (let i = 0; i <= actual.length - 1; i++) {
+
+    const currentActual = actual[i];
+    const currentExpected = expected[i];
+
+    if (Array.isArray(currentActual) && Array.isArray(currentExpected)) {
+      if (!eqArrays(currentActual, currentExpected)) {
+        return false;
+      }
+    } else if (currentActual !== currentExpected) {
+      return false;
+    }
+  }
+  return true;
 };
 
+//assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => should PASS
+//console.log(eqArrays([1, 2, 3], [1, 2, 3])); // => true
+//console.log(eqArrays([1, 2, 3], [3, 2, 1])); // => false
+//console.log(eqArrays(["1", "2", "3"], ["1", "2", "3"])); // => true
+//console.log(eqArrays(["1", "2", "3"], ["1", "2", 3])); // => false
 
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => should PASS
-console.log(eqArrays([1, 2, 3], [1, 2, 3])); // => true
-console.log(eqArrays([1, 2, 3], [3, 2, 1])); // => false
-console.log(eqArrays(["1", "2", "3"], ["1", "2", "3"])); // => true
-console.log(eqArrays(["1", "2", "3"], ["1", "2", 3])); // => false
+console.log(eqArrays([[2, 3], [4]], [[2, 3], [4]])) // => true
+
+console.log(eqArrays([[2, 3], [4]], [[2, 3], [4, 5]])) // => false
+console.log(eqArrays([[2, 3], [4]], [[2, 3], 4])) // => false
