@@ -6,7 +6,4 @@ const assertEqual = function(actual, expected) {
   }
 };
 
-assertEqual('word', 'word');
-assertEqual('word', 'not word');
-assertEqual(12, 12);
-assertEqual(12, 21);
+module.exports = assertEqual;
