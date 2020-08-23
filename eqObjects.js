@@ -28,19 +28,18 @@ const eqObjects = function(objOne, objTwo) {
     const objOneKey = objOne[key];
     const objTwoKey = objTwo[key];
 
-    if(typeof objOneKey === 'object' && typeof objTwoKey === 'object') {
-      return eqObjects(objOneKey, objTwoKey);
-      }
-
     if (Array.isArray(objOneKey) && Array.isArray(objTwoKey)) {
       if (!eqArrays(objOneKey, objTwoKey)) {
         return false;
       }
+    } else if(typeof objOneKey === 'object' && typeof objTwoKey === 'object') {
+      if (!eqObjects(objOneKey, objTwoKey)) {
+        return false;
+      }
     } else if (objOne[key] !== objTwo[key]) {
-      return false;
+        return false;
     }
   }
-
   return true;
 };
 
@@ -68,5 +67,5 @@ console.log(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })); // => true
 console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 })); // => false
 console.log(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 })); // => false
 
-console.log(eqObjects({ a: [2], b: { c: [1, 2] } }, { a: [2, 1], b: { c: [1, 2] } })); // => false
+console.log(eqObjects({ a: [2], b: { c: [1, 2] } }, { a: [2], b: { c: [1, 2] } })); // => false
 
