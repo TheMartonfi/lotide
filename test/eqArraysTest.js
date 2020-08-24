@@ -1,7 +1,46 @@
-const assertEqual = require('../assertEqual');
+const assert = require('chai').assert;
 const eqArrays = require('../eqArrays');
 
-assertEqual(eqArrays([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]), true);
-assertEqual(eqArrays([1, 2, 3, 4, 5], [1, 2, 8, 4, 5]), false);
-assertEqual(eqArrays([1, [1, 2, [3, 4]], 3, 4, 5], [1, [1, 2, [3, 4]], 3, 4, 5]), true);
-assertEqual(eqArrays([1, [1, 2, [3, 5]], 3, 4, 5], [1, [1, 2, [3, 4]], 3, 4, 5]), false);
+describe("#eqArrays", () => {
+
+  it("returns true for [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]", () => {
+    const inputOne = [1, 2, 3, 4, 5];
+    const inputTwo = [1, 2, 3, 4, 5];
+    const expected = true;
+
+    assert.deepEqual(eqArrays(inputOne, inputTwo), expected);
+  });
+
+  it("returns true for [1, [2, [3], [4, 5]]], [1, [2, [3], [4, 5]]]", () => {
+    const inputOne = [1, [2, [3], [4, 5]]];
+    const inputTwo = [1, [2, [3], [4, 5]]];
+    const expected = true;
+
+    assert.deepEqual(eqArrays(inputOne, inputTwo), expected);
+  });
+
+  it("returns false for [1, [2, [3], [4, 5]], [6, 7]], [1, [2, [3], [4, 5]], [6, [7]]]", () => {
+    const inputOne = [1, [2, [3], [4, 5]], [6, 7]];
+    const inputTwo = [1, [2, [3], [4, 5]], [6, [7]]];
+    const expected = false;
+
+    assert.deepEqual(eqArrays(inputOne, inputTwo), expected);
+  });
+
+  it("returns true for [1, [2, [3], [4, 5]], []], [1, [2, [3], [4, 5]], []]", () => {
+    const inputOne = [1, [2, [3], [4, 5]], []];
+    const inputTwo = [1, [2, [3], [4, 5]], []];
+    const expected = true;
+
+    assert.deepEqual(eqArrays(inputOne, inputTwo), expected);
+  });
+
+  it("returns true for [], []", () => {
+    const inputOne = [];
+    const inputTwo = [];
+    const expected = true;
+
+    assert.deepEqual(eqArrays(inputOne, inputTwo), expected);
+  });
+
+});

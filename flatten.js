@@ -1,8 +1,8 @@
-const flatten = function(arr) {
+const flatten = function(array) {
 
   let output = [];
 
-  for (const element of arr) {
+  for (const element of array) {
 
     if (Array.isArray(element)) {
       for (const nestedElement of element) {
