@@ -1,17 +1,17 @@
-const middle = function(arr) {
+const middle = function(array) {
   
-  const isArrModuleTwo = arr.length % 2 === 0;
-  const arrLength = arr.length;
-  const arrLengthMinus = arrLength - 1;
+  const isArrayModuloTwo = array.length % 2 === 0;
+  const arrayLength = array.length;
+  const arrayLastIndex = arrayLength - 1;
 
-  if (arrLength < 3) {
+  if (arrayLength < 3) {
     return [];
 
-  } else if (!isArrModuleTwo) {
-    return [arr[Math.floor((arrLengthMinus) / 2)]];
+  } else if (!isArrayModuloTwo) {
+    return [array[Math.floor((arrayLastIndex) / 2)]];
 
-  } else if (isArrModuleTwo) {
-    return [arr[Math.floor(arrLengthMinus / 2)], arr[Math.floor(arrLength / 2)]];
+  } else if (isArrayModuloTwo) {
+    return [array[Math.floor(arrayLastIndex / 2)], array[Math.floor(arrayLength / 2)]];
   }
 };
 
