@@ -4,23 +4,38 @@ const head = require('../head');
 describe("#head", () => {
 
   it("returns 1 for [1, 2, 3]", () => {
-    assert.strictEqual(head([1, 2, 3]), 1);
+    const input = [1, 2, 3];
+    const expected = 1;
+
+    assert.strictEqual(head(input), expected);
   });
 
   it("returns '5' for ['5']", () => {
-    assert.strictEqual(head(['5']), '5'); 
+    const input = ['5'];
+    const expected = '5';
+    
+    assert.strictEqual(head(input), expected);
   });
 
   it("returns 'word' for ['word', 2, 3, 4, 5]", () => {
-    assert.strictEqual(head(['word', 2, 3, 4, 5]), 'word'); 
+    const input = ['word', 2, 3, 4, 5];
+    const expected = 'word';
+    
+    assert.strictEqual(head(input), expected);
   });
 
   it("returns true for [true, 2, 3, 4, 5]", () => {
-    assert.strictEqual(head([true, 2, 3, 4, 5]), true); 
+    const input = [true, 2, 3, 4, 5];
+    const expected = true;
+    
+    assert.strictEqual(head(input), expected);
   });
 
   it("returns undefined for []", () => {
-    assert.strictEqual(head([]), undefined); 
+    const input = [];
+    const expected = undefined;
+    
+    assert.strictEqual(head(input), expected);
   });
 
 });
